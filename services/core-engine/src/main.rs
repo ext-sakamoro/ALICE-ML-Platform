@@ -84,7 +84,7 @@ async fn deploy(State(s): State<Arc<AppState>>, Json(req): Json<DeployRequest>) 
     let replicas = req.replicas.unwrap_or(2);
     let region = req.region.unwrap_or_else(|| "us-east-1".into());
     s.stats.lock().unwrap().total_deployments += 1;
-    Json(DeployResponse { deployment_id: uuid::Uuid::new_v4().to_string(), model: req.model.clone(), precision, replicas, region: region.clone(), endpoint: format!("https://ml.alice-platform.com/v1/{}", req.model), status: "deploying".into() })
+    Json(DeployResponse { deployment_id: uuid::Uuid::new_v4().to_string(), model: req.model.clone(), precision, replicas, region: region.clone(), endpoint: format!("https://ml.alicelaw.net/v1/{}", req.model), status: "deploying".into() })
 }
 
 async fn benchmark(State(_s): State<Arc<AppState>>, Json(req): Json<BenchmarkRequest>) -> Json<BenchmarkResponse> {
